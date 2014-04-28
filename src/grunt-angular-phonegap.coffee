@@ -28,7 +28,7 @@ module.exports = (grunt)->
         sources
         )()
 
-    grunt.registerTask 'phonegap:build', 'Build for phonegap (use `build:phonegap:[platform]` when not android)', (target="android")->
+    grunt.registerTask 'phonegap:build', 'Build for phonegap (use `phonegap:build:[platform]` when not android)', (target="android")->
       grunt.task.run ['build', 'clean:phonegap', 'copy:phonegap', "shell:phonegapBuild:#{target}"]
     
     grunt.registerTask 'phonegap:emulate', 
@@ -39,7 +39,7 @@ module.exports = (grunt)->
         emulator.emulate grunt.option('emulator'), @async()
 
     grunt.registerTask 'phonegap:send', 'Send the app for a remote build', (target="android")->
-      grunt.task.run ['build:phonegap', "shell:phonegapBuildRemote:#{target}"]
+      grunt.task.run ['phonegap:build', "shell:phonegapBuildRemote:#{target}"]
 
 
   # If `grunt.config.data` is empty (meaning `grunt.initConfig` wasn't called yet) 
